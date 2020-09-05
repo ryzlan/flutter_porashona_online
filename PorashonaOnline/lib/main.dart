@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './pages/LoginScreen.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,6 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: false,
       title: 'Porashona Online',
       theme: ThemeData(
@@ -28,11 +31,11 @@ class MyApp extends StatelessWidget {
           buttonColor: Color.fromRGBO(135, 80, 213, 1),
         ),
         colorScheme: ColorScheme.light(
-          primary: Colors.white,
-          onPrimary: Colors.white,
-          primaryVariant: Colors.white38,
-          secondary: Colors.red,
-        ),
+            primary: Colors.white,
+            onPrimary: Colors.white,
+            primaryVariant: Colors.white38,
+            secondary: Colors.red,
+            onError: Color.fromRGBO(255, 204, 204, 1)),
         cardTheme: CardTheme(
           color: Colors.teal,
         ),

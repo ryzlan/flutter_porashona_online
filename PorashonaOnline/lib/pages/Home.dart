@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -8,19 +11,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final authcodeStorage = FlutterSecureStorage();
+  String accessToken = '';
+  @override
+  void initState() {
+    _getToken();
+    super.initState();
+  }
+
+  _getToken() async {
+    String accessToken = await authcodeStorage.read(key: "accessToken");
+    setState(() {
+      accessToken = accessToken;
+    });
+  }
+
+  Future<bool> _exitApp(BuildContext context) async {
+    if (this.accessToken.isEmpty) {
+      exit(0);
+      return new Future<bool>.value(false);
+    } else {
+      return new Future<bool>.value(true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Column(
-            children: [
-              Text("Hello"),
-              RaisedButton(
-                onPressed: () {},
-                child: Text("Logout"),
-              )
-            ],
+      body: WillPopScope(
+        onWillPop: () => _exitApp(context),
+        child: Center(
+          child: Container(
+            child: Column(
+              children: [
+                Text(this.accessToken),
+                RaisedButton(
+                  onPressed: () {},
+                  child: Text("Logout"),
+                )
+              ],
+            ),
           ),
         ),
       ),
