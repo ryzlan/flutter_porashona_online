@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final authcodeStorage = FlutterSecureStorage();
-  String accessToken = '';
+  String accessToken = 'a';
   @override
   void initState() {
     _getToken();
@@ -27,10 +27,10 @@ class _HomeState extends State<Home> {
   }
 
   Future<bool> _exitApp(BuildContext context) async {
-    if (this.accessToken.isEmpty) {
-      exit(0);
-      return new Future<bool>.value(false);
+    if (this.accessToken.length < 1) {
+      return new Future<bool>.value(true);
     } else {
+      exit(0);
       return new Future<bool>.value(true);
     }
   }
