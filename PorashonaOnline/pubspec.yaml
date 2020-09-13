@@ -31,9 +31,9 @@ dependencies:
   bot_toast: ^3.0.4
   libphonenumber: ^1.0.1
   flutter_secure_storage: ^3.3.3
-  contacts_service: ^0.4.6
+  contacts_service: ^0.3.10
   permission_handler: ^5.0.1+1
-  easy_contact_picker: ^0.0.2
+  
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3

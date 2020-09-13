@@ -1,84 +1,110 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:permission_handler/permission_handler.dart';
-// import 'package:easy_contact_picker/easy_contact_picker.dart';
+import 'dart:math';
 
-// class Test extends StatefulWidget {
-//   Test({Key key}) : super(key: key);
+import 'package:contacts_service/contacts_service.dart';
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-//   @override
-//   _TestState createState() => _TestState();
-// }
+class Test extends StatefulWidget {
+  Test({Key key}) : super(key: key);
 
-// class _TestState extends State<Test> with AutomaticKeepAliveClientMixin {
-//   List<Contact> _list = new List();
-//   final EasyContactPicker _contactPicker = new EasyContactPicker();
+  @override
+  _TestState createState() => _TestState();
+}
 
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
+class _TestState extends State<Test> {
+  List<Contact> contacts = [];
+  List<Contact> contactsFiltered = [];
+  Map<String, Color> contactsColorMap = new Map();
 
-//     _openAddressBook();
-//   }
+  @override
+  void initState() {
+    super.initState();
+    getPermissions();
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: Text("通讯录"),
-//         ),
-//         body: ListView.builder(
-//           itemBuilder: (context, index) {
-//             return _getItemWithIndex(_list[index]);
-//           },
-//           itemCount: _list.length,
-//         ));
-//   }
+  getPermissions() async {
+    if (await Permission.contacts.request().isGranted) {
+      getAllContacts();
+    }
+  }
 
-//   Widget _getItemWithIndex(Contact contact) {
-//     return Container(
-//       height: 45,
-//       padding: EdgeInsets.only(left: 13),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: <Widget>[
-//           Text(contact.fullName),
-//           Text(
-//             contact.phoneNumber,
-//             style: TextStyle(
-//               color: Colors.grey,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
+  String flattenPhoneNumber(String phoneStr) {
+    return phoneStr.replaceAllMapped(RegExp(r'^(\+)|\D'), (Match m) {
+      return m[0] == "+" ? "+" : "";
+    });
+  }
 
-//   _openAddressBook() async {
-//     // 申请权限
-//     Map<PermissionGroup, PermissionStatus> permissions =
-//         await PermissionHandler()
-//             .requestPermissions([PermissionGroup.contacts]);
+  getAllContacts() async {
+    List colors = [Colors.green, Colors.indigo, Colors.yellow, Colors.orange];
+    int colorIndex = 0;
+    List<Contact> _contacts = (await ContactsService.getContacts()).toList();
+    _contacts.forEach((contact) {
+      Color baseColor = colors[colorIndex];
+      contactsColorMap[contact.displayName] = baseColor;
+      colorIndex++;
+      if (colorIndex == colors.length) {
+        colorIndex = 0;
+      }
+    });
+    setState(() {
+      contacts = _contacts;
+    });
+  }
 
-//     // 申请结果
-//     PermissionStatus permission = await PermissionHandler()
-//         .checkPermissionStatus(PermissionGroup.contacts);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Contact title"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: contacts.length,
+                itemBuilder: (context, index) {
+                  Contact contact = contacts[index];
+                  for (var i = 0; i < contact.phones.length; i++) {
+                    print(contact.phones.elementAt(i).value);
+                  }
+                  var baseColor =
+                      contactsColorMap[contact.displayName] as dynamic;
 
-//     if (permission == PermissionStatus.granted) {
-//       _getContactData();
-//     }
-//   }
-
-//   _getContactData() async {
-//     List<Contact> list = await _contactPicker.selectContacts();
-//     setState(() {
-//       _list = list;
-//     });
-//   }
-
-//   @override
-//   // TODO: implement wantKeepAlive
-//   bool get wantKeepAlive => true;
-// }
+                  Color color1 = baseColor[800];
+                  Color color2 = baseColor[400];
+                  return ListTile(
+                      title: Text(contact.displayName),
+                      subtitle: Text(contact.phones.length > 0
+                          ? contact.phones.elementAt(0).value
+                          : ''),
+                      leading: (contact.avatar != null &&
+                              contact.avatar.length > 0)
+                          ? CircleAvatar(
+                              backgroundImage: MemoryImage(contact.avatar),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        color1,
+                                        color2,
+                                      ],
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.topRight)),
+                              child: CircleAvatar(
+                                  child: Text(contact.initials(),
+                                      style: TextStyle(color: Colors.white)),
+                                  backgroundColor: Colors.transparent)));
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

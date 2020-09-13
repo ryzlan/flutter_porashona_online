@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final authcodeStorage = FlutterSecureStorage();
-  String accessToken = 'a';
+  String accessToken = '';
   @override
   void initState() {
     _getToken();
