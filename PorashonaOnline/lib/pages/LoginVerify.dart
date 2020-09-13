@@ -10,7 +10,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:PorashonaOnline/api_urls.dart';
-import 'Home.dart';
+import 'package:PorashonaOnline/pages/Contact.dart';
 
 class LoginVerify extends StatefulWidget {
   String phoneNumber;
@@ -79,7 +79,7 @@ class _LoginVerifyState extends State<LoginVerify> {
       sleep(Duration(seconds: 2));
       _storeInMemory(json.decode(response.body)['access_token']);
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => ContactPage()),
       );
     }
   }

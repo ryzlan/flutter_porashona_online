@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(135, 80, 213, 1),
         highlightColor: Color.fromRGBO(73, 65, 109, 1),
         accentColor: Color.fromRGBO(52, 67, 86, 1),
-        scaffoldBackgroundColor: Colors.teal,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           color: Colors.teal,
           iconTheme: IconThemeData(
@@ -48,6 +48,16 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'HKRegular',
                 fontSize: 24.0,
                 fontWeight: FontWeight.w200),
+            headline2: TextStyle(
+                color: Color.fromRGBO(52, 67, 86, 1),
+                fontFamily: 'HKRegular',
+                fontSize: 26.0,
+                fontWeight: FontWeight.w400),
+            headline3: TextStyle(
+                color: Color.fromRGBO(112, 112, 112, 0.8),
+                fontFamily: 'HKBold',
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600),
             headline5: TextStyle(
                 color: Color.fromRGBO(135, 80, 213, 1),
                 fontFamily: 'HKRegular',
@@ -75,53 +85,6 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.normal)),
       ),
       home: LoginScreen(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
