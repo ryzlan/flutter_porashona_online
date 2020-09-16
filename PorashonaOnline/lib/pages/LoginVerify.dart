@@ -74,7 +74,7 @@ class _LoginVerifyState extends State<LoginVerify> {
       print(json.decode(response.body)['access_token']);
       BotToast.showSimpleNotification(
           backgroundColor: Theme.of(context).backgroundColor,
-          title: json.decode(response.body)['access_token'],
+          title: 'Sucessfully logged in!',
           duration: Duration(seconds: 5));
       sleep(Duration(seconds: 2));
       _storeInMemory(json.decode(response.body)['access_token']);
