@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       BotToast.showSimpleNotification(
           backgroundColor: Theme.of(context).colorScheme.onError,
           title: "There was a Error, Please Check the Mobile Number",
-          duration: Duration(seconds: 3));
+          duration: Duration(seconds: 5));
       setState(() {
         isLoading = false;
       });
@@ -53,9 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
       BotToast.showSimpleNotification(
           backgroundColor: Theme.of(context).backgroundColor,
           title: json.decode(response.body)['message'],
-          duration: Duration(seconds: 3));
+          duration: Duration(seconds: 5));
       //send to next page
-      sleep(Duration(seconds: 2));
       setState(() {
         isLoading = true;
       });

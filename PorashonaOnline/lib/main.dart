@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './pages/LoginScreen.dart';
 import 'package:bot_toast/bot_toast.dart';
+import './pages/home_page_screen/HomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         backgroundColor: Colors.white,
         primaryColor: Color.fromRGBO(135, 80, 213, 1),
+        primaryColorDark: Color.fromRGBO(83, 39, 146, 1),
         highlightColor: Color.fromRGBO(73, 65, 109, 1),
         accentColor: Color.fromRGBO(52, 67, 86, 1),
         scaffoldBackgroundColor: Colors.white,
@@ -46,12 +48,12 @@ class MyApp extends StatelessWidget {
             headline1: TextStyle(
                 color: Color.fromRGBO(52, 67, 86, 1),
                 fontFamily: 'HKRegular',
-                fontSize: 24.0,
+                fontSize: 30.0,
                 fontWeight: FontWeight.w200),
             headline2: TextStyle(
                 color: Color.fromRGBO(52, 67, 86, 1),
                 fontFamily: 'HKRegular',
-                fontSize: 26.0,
+                fontSize: 30.0,
                 fontWeight: FontWeight.w400),
             headline3: TextStyle(
                 color: Color.fromRGBO(112, 112, 112, 0.8),
@@ -71,12 +73,22 @@ class MyApp extends StatelessWidget {
             bodyText1: TextStyle(
                 color: Color.fromRGBO(52, 67, 86, 0.7),
                 fontFamily: 'HKRegular',
-                fontSize: 22.0,
+                fontSize: 14.0,
                 fontWeight: FontWeight.w200),
             bodyText2: TextStyle(
                 color: Colors.white,
                 fontFamily: 'HKRegular',
                 fontSize: 21.0,
+                fontWeight: FontWeight.normal),
+            subtitle1: TextStyle(
+                color: Colors.white,
+                fontFamily: 'HKBold',
+                fontSize: 16.0,
+                fontWeight: FontWeight.normal),
+            subtitle2: TextStyle(
+                color: Colors.white,
+                fontFamily: 'HKRegular',
+                fontSize: 14.0,
                 fontWeight: FontWeight.normal),
             caption: TextStyle(
                 color: Colors.black,
@@ -84,7 +96,8 @@ class MyApp extends StatelessWidget {
                 fontSize: 18.0,
                 fontWeight: FontWeight.normal)),
       ),
-      home: LoginScreen(),
+      home: HomePage(),
+      //LoginScreen(),
     );
   }
 }
