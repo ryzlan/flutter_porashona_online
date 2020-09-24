@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -33,10 +34,10 @@ class _HomePageState extends State<HomePage> {
     'assets/images/play/play2.png'
   ];
   final List blogImages = [
-    'assets/images/play/play1.png',
-    'assets/images/play/play2.png',
-    'assets/images/play/play1.png',
-    'assets/images/play/play2.png'
+    'assets/images/blogs/blog1.png',
+    'assets/images/blogs/blog2.png',
+    'assets/images/blogs/blog1.png',
+    'assets/images/blogs/blog2.png'
   ];
 
   final List subjects = [
@@ -136,7 +137,10 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              _blogListWidget()
+              _blogListWidget(context),
+              SizedBox(
+                height: 50,
+              )
             ],
           ),
         ),
@@ -504,8 +508,8 @@ class _HomePageState extends State<HomePage> {
           itemCount: header.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(right: 10),
-              width: MediaQuery.of(context).size.width * 0.8,
+              margin: EdgeInsets.only(right: 20),
+              width: MediaQuery.of(context).size.width * 0.75,
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -517,7 +521,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Image.asset(
                       images[index],
-                      fit: BoxFit.fill,
+                      height: MediaQuery.of(context).size.height * 0.15,
                     ),
                     Text(
                       header[index],
@@ -556,64 +560,210 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _blogListWidget() {
+  _blogListWidget(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.50,
       padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-      height: MediaQuery.of(context).size.height * 0.40,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: header.length,
+          itemCount: subjects.length,
           itemBuilder: (context, index) {
             return Container(
               margin: EdgeInsets.only(right: 10),
+
               width: MediaQuery.of(context).size.width * 0.8,
-              padding: EdgeInsets.all(15),
+              // padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: colors[index],
-              ),
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(112, 112, 112, 0.08),
+                      spreadRadius: 2,
+                      blurRadius: 3,
+                      offset: Offset(4, 2), // changes position of shadow
+                    ),
+                  ]),
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      images[index],
-                      fit: BoxFit.fill,
+                    ClipRRect(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(16)),
+                      child: Image.asset(
+                        blogImages[index],
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    Text(
-                      header[index],
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'HKBold',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      // alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            subjects[index],
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromRGBO(84, 104, 255, 1),
+                                fontFamily: 'HKRegular',
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            subHeading[index],
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromRGBO(52, 67, 86, 1),
+                                fontFamily: 'HKBold',
+                                fontSize: 20,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Text(
+                                  lessons[index],
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(52, 67, 86, 1),
+                                      fontFamily: 'HKRegular',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Spacer(
+                                flex: 1,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: LinearPercentIndicator(
+                                  lineHeight: 8.0,
+                                  percent: 0.4,
+                                  linearStrokeCap: LinearStrokeCap.roundAll,
+                                  backgroundColor:
+                                      Color.fromRGBO(151, 151, 151, 0.3),
+                                  progressColor: Color.fromRGBO(0, 217, 205, 1),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.school,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          subs[index],
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'HKRegular',
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal),
-                        )
-                      ],
-                    )
                   ]),
             );
           }),
     );
+
+    // return Container(
+    //   color: Colors.transparent,
+    //   padding: EdgeInsets.zero,
+    //   child: ListView.builder(
+    //       padding: EdgeInsets.zero,
+    //       scrollDirection: Axis.horizontal,
+    //       itemCount: subjects.length,
+    //       itemBuilder: (context, index) {
+    //         return Container(
+    //           margin: EdgeInsets.only(right: 10),
+    //           height: MediaQuery.of(context).size.height * 0.50,
+    //           width: MediaQuery.of(context).size.width * 0.8,
+    //           // padding: EdgeInsets.all(15),
+    //           decoration: BoxDecoration(
+    //               borderRadius: BorderRadius.circular(16),
+    //               color: Colors.white,
+    //               boxShadow: [
+    //                 BoxShadow(
+    //                   color: Color.fromRGBO(112, 112, 112, 0.08),
+    //                   spreadRadius: 2,
+    //                   blurRadius: 3,
+    //                   offset: Offset(4, 2), // changes position of shadow
+    //                 ),
+    //               ]),
+    //           child: Column(
+    //               mainAxisAlignment: MainAxisAlignment.start,
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               children: <Widget>[
+    //                 ClipRRect(
+    //                   borderRadius:
+    //                       BorderRadius.vertical(top: Radius.circular(16)),
+    //                   child: Image.asset(
+    //                     blogImages[index],
+    //                     fit: BoxFit.fill,
+    //                   ),
+    //                 ),
+    //                 Container(
+    //                   padding: EdgeInsets.all(20),
+    //                   // alignment: Alignment.center,
+    //                   child: Column(
+    //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       Text(
+    //                         subjects[index],
+    //                         textAlign: TextAlign.left,
+    //                         style: TextStyle(
+    //                             color: Color.fromRGBO(84, 104, 255, 1),
+    //                             fontFamily: 'HKRegular',
+    //                             fontSize: 14,
+    //                             fontWeight: FontWeight.normal),
+    //                       ),
+    //                       SizedBox(
+    //                         height: 15,
+    //                       ),
+    //                       Text(
+    //                         subHeading[index],
+    //                         textAlign: TextAlign.left,
+    //                         style: TextStyle(
+    //                             color: Color.fromRGBO(52, 67, 86, 1),
+    //                             fontFamily: 'HKBold',
+    //                             fontSize: 20,
+    //                             fontWeight: FontWeight.normal),
+    //                       ),
+    //                       SizedBox(
+    //                         height: 25,
+    //                       ),
+    //                       Row(
+    //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                         children: [
+    //                           Text(
+    //                             lessons[index],
+    //                             textAlign: TextAlign.left,
+    //                             style: TextStyle(
+    //                                 color: Color.fromRGBO(52, 67, 86, 1),
+    //                                 fontFamily: 'HKRegular',
+    //                                 fontSize: 14,
+    //                                 fontWeight: FontWeight.normal),
+    //                           ),
+    //                           Spacer(
+    //                             flex: 2,
+    //                           ),
+    //                           // LinearPercentIndicator(
+    //                           //   lineHeight: 8.0,
+    //                           //   percent: 0.6,
+    //                           //   linearStrokeCap: LinearStrokeCap.roundAll,
+    //                           //   backgroundColor:
+    //                           //       Color.fromRGBO(151, 151, 151, 0.8),
+    //                           //   progressColor: Color.fromRGBO(0, 217, 205, 1),
+    //                           // )
+    //                         ],
+    //                       )
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ]),
+    //         );
+    //       }),
+    // );
   }
 }
