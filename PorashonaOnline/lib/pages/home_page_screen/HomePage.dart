@@ -71,39 +71,49 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: true,
             children: [
               SizedBox(
-                height: 100,
+                height: 30,
               ),
               Text(
                 "Study",
-                style: Theme.of(context).textTheme.headline2,
+                style: TextStyle(
+                    color: Color.fromRGBO(52, 67, 86, 1),
+                    fontFamily: 'HKBold',
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Container(
                 width: 250,
                 alignment: Alignment.center,
                 child: Text(
-                  "Choose your end-goal, and we will help you make sure you ace at it!",
-                  style: Theme.of(context).textTheme.bodyText1,
+                  'Try our Daily Quizzes with hundreds of' +
+                      '\n' +
+                      'competitors to know your chances!',
+                  style: TextStyle(
+                      color: Color.fromRGBO(56, 56, 56, 1),
+                      fontFamily: 'HKRegular',
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.normal),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               _cardWidget(),
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               _rowIconsWidget(),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               _noteWidget(),
               SizedBox(
-                height: 80,
+                height: 20,
               ),
               Text(
                 "Facebook Live",
@@ -111,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               _liveFeedWidget(),
               SizedBox(
@@ -149,137 +159,82 @@ class _HomePageState extends State<HomePage> {
   }
 
   _cardWidget() {
-    return FlatButton(
-      onPressed: () {},
-      child: Container(
-        // margin: EdgeInsets.only(top: 60),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Theme.of(context).primaryColorDark,
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(112, 112, 112, 0.2),
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: Offset(0, 2), // changes position of shadow
-              ),
-            ]),
-        child: Column(
-          children: [
-            Container(
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      // width: MediaQuery.of(context).size.width * 0.3,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 1,
+            child: RaisedButton.icon(
+              elevation: 0,
               padding: EdgeInsets.all(0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+              onPressed: () {},
+              label: Text(
+                '6000 Questions',
+                style: TextStyle(
+                    color: Color.fromRGBO(52, 52, 52, 1),
+                    fontFamily: 'HKBold',
+                    fontSize: 9.0),
+              ),
+              icon: Icon(
+                Icons.question_answer,
                 color: Theme.of(context).primaryColor,
+                size: 15,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                      flex: 2,
-                      child: Image.asset(
-                        'assets/images/home.png',
-                        fit: BoxFit.fill,
-                      )),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 15),
-                      alignment: Alignment.centerLeft,
-                      //padding: EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "43rd BCS Exam ",
-                            style: Theme.of(context).textTheme.subtitle1,
-                            textAlign: TextAlign.start,
-                          ),
-                          Text(
-                            "1500+ Users ",
-                            style: Theme.of(context).textTheme.subtitle2,
-                            textAlign: TextAlign.start,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+              textColor: Colors.white,
+              color: Colors.transparent,
             ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton.icon(
-                    elevation: 0,
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {},
-                    label: Text(
-                      '6000 Questions',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'HKBold',
-                          fontSize: 9.0),
-                    ),
-                    icon: Icon(
-                      Icons.question_answer,
-                      color: Theme.of(context).primaryColor,
-                      size: 12,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.transparent,
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton.icon(
-                    elevation: 0,
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {},
-                    label: Text(
-                      '400 Articles',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'HKBold',
-                          fontSize: 9.0),
-                    ),
-                    icon: Icon(
-                      Icons.ac_unit,
-                      color: Theme.of(context).primaryColor,
-                      size: 12,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.transparent,
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: RaisedButton.icon(
-                    elevation: 0,
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {},
-                    label: Text(
-                      '200+ Quizzes',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'HKBold',
-                          fontSize: 9.0),
-                    ),
-                    icon: Icon(
-                      Icons.watch_later,
-                      color: Theme.of(context).primaryColor,
-                      size: 12,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.transparent,
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+          ),
+          Expanded(
+            flex: 1,
+            child: RaisedButton.icon(
+              elevation: 0,
+              padding: EdgeInsets.all(0),
+              onPressed: () {},
+              label: Text(
+                '400 Articles',
+                style: TextStyle(
+                    color: Color.fromRGBO(52, 52, 52, 1),
+                    fontFamily: 'HKBold',
+                    fontSize: 9.0),
+              ),
+              icon: Icon(
+                Icons.event_note,
+                color: Theme.of(context).primaryColor,
+                size: 15,
+              ),
+              textColor: Colors.white,
+              color: Colors.transparent,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: RaisedButton.icon(
+              elevation: 0,
+              padding: EdgeInsets.all(0),
+              onPressed: () {},
+              label: Text(
+                '200+ Quizzes',
+                style: TextStyle(
+                    color: Color.fromRGBO(52, 52, 52, 1),
+                    fontFamily: 'HKBold',
+                    fontSize: 9.0),
+              ),
+              icon: Icon(
+                Icons.watch,
+                color: Theme.of(context).primaryColor,
+                size: 15,
+              ),
+              textColor: Colors.white,
+              color: Colors.transparent,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -341,12 +296,33 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('BCS' + '\n' + 'Coaching',
+                    RichText(
+                        text: TextSpan(
+                            text: '43',
+                            style: Theme.of(context).textTheme.subtitle1,
+                            children: [
+                          TextSpan(
+                              text: 'rd',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'HKBold',
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          TextSpan(
+                              text: ' BSC',
+                              style: Theme.of(context).textTheme.subtitle1)
+                        ])),
+                    Text(
+                        '41st BCS Preliminary Subject' +
+                            '\n' +
+                            'Final Crash Course',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.subtitle1),
-                    Text('Lorem ipsum dolor sit amet, consetetur sadipscing.',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.subtitle2)
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'HKRegular',
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal))
                   ],
                 ),
               )),
@@ -365,18 +341,18 @@ class _HomePageState extends State<HomePage> {
                         // margin: EdgeInsets.symmetric(horizontal: 20),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Color.fromRGBO(151, 151, 151, .4),
+                          borderRadius: BorderRadius.circular(12),
+                          color: Color.fromRGBO(255, 255, 255, .1),
                         ),
                         child: Container(
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: Color.fromRGBO(112, 112, 112, .5),
+                            color: Color.fromRGBO(255, 255, 255, .3),
                           ),
                           child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
+                            Icons.note_add,
+                            color: Colors.transparent,
                             size: 20,
                           ),
                         )),
@@ -393,28 +369,28 @@ class _HomePageState extends State<HomePage> {
 
   _liveFeedWidget() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Friday 21st to Saturday 22nd . 2 Classes',
-          style: Theme.of(context).textTheme.bodyText1,
-          textAlign: TextAlign.start,
-        ),
+        RichText(
+            text: TextSpan(
+                text: 'Friday 21st to Saturday 22nd .',
+                style: TextStyle(
+                    color: Color.fromRGBO(59, 59, 77, 1),
+                    fontFamily: 'HKBold',
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.bold),
+                children: [
+              TextSpan(
+                  text: ' 2 Classes',
+                  style: TextStyle(
+                      color: Color.fromRGBO(108, 123, 138, 1),
+                      fontFamily: 'HKRegular',
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.normal))
+            ])),
         SizedBox(
           height: 20,
         ),
-        _liveFeedItem('Mohi Sir: BCS Mathematics',
-            'Until recently, the prevailing view assum…'),
-        _liveFeedItem('Salam Sir: BCS Analytical',
-            'Until recently, the prevailing view assum…'),
-        Text(
-          'Sunday 23rd to Thrusday 27th . 3 Schedulled Classes',
-          style: Theme.of(context).textTheme.bodyText1,
-          textAlign: TextAlign.start,
-        ),
-        _liveFeedItem('Mohi Sir: BCS Mathematics',
-            'Until recently, the prevailing view assum…'),
-        _liveFeedItem('Salam Sir: BCS Analytical',
-            'Until recently, the prevailing view assum…'),
         _liveFeedItem('Mohi Sir: BCS Mathematics',
             'Until recently, the prevailing view assum…'),
         _liveFeedItem('Salam Sir: BCS Analytical',
@@ -426,11 +402,11 @@ class _HomePageState extends State<HomePage> {
   _liveFeedItem(String subject, String details) {
     return Container(
       height: 70,
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: Color.fromRGBO(112, 112, 112, .08),
+        borderRadius: BorderRadius.circular(12),
+        color: Color.fromRGBO(244, 246, 249, 1),
       ),
       child: Row(
         children: [
@@ -441,7 +417,7 @@ class _HomePageState extends State<HomePage> {
               // width: 50,
               margin: EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(16)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -483,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  'Until recently, the prevailing view assum…',
+                  'Until recently, the prevailing view assus...',
                   style: TextStyle(
                       color: Color.fromRGBO(108, 123, 138, 1),
                       fontFamily: 'HKRegular',
@@ -665,105 +641,5 @@ class _HomePageState extends State<HomePage> {
             );
           }),
     );
-
-    // return Container(
-    //   color: Colors.transparent,
-    //   padding: EdgeInsets.zero,
-    //   child: ListView.builder(
-    //       padding: EdgeInsets.zero,
-    //       scrollDirection: Axis.horizontal,
-    //       itemCount: subjects.length,
-    //       itemBuilder: (context, index) {
-    //         return Container(
-    //           margin: EdgeInsets.only(right: 10),
-    //           height: MediaQuery.of(context).size.height * 0.50,
-    //           width: MediaQuery.of(context).size.width * 0.8,
-    //           // padding: EdgeInsets.all(15),
-    //           decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(16),
-    //               color: Colors.white,
-    //               boxShadow: [
-    //                 BoxShadow(
-    //                   color: Color.fromRGBO(112, 112, 112, 0.08),
-    //                   spreadRadius: 2,
-    //                   blurRadius: 3,
-    //                   offset: Offset(4, 2), // changes position of shadow
-    //                 ),
-    //               ]),
-    //           child: Column(
-    //               mainAxisAlignment: MainAxisAlignment.start,
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: <Widget>[
-    //                 ClipRRect(
-    //                   borderRadius:
-    //                       BorderRadius.vertical(top: Radius.circular(16)),
-    //                   child: Image.asset(
-    //                     blogImages[index],
-    //                     fit: BoxFit.fill,
-    //                   ),
-    //                 ),
-    //                 Container(
-    //                   padding: EdgeInsets.all(20),
-    //                   // alignment: Alignment.center,
-    //                   child: Column(
-    //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                     crossAxisAlignment: CrossAxisAlignment.start,
-    //                     children: [
-    //                       Text(
-    //                         subjects[index],
-    //                         textAlign: TextAlign.left,
-    //                         style: TextStyle(
-    //                             color: Color.fromRGBO(84, 104, 255, 1),
-    //                             fontFamily: 'HKRegular',
-    //                             fontSize: 14,
-    //                             fontWeight: FontWeight.normal),
-    //                       ),
-    //                       SizedBox(
-    //                         height: 15,
-    //                       ),
-    //                       Text(
-    //                         subHeading[index],
-    //                         textAlign: TextAlign.left,
-    //                         style: TextStyle(
-    //                             color: Color.fromRGBO(52, 67, 86, 1),
-    //                             fontFamily: 'HKBold',
-    //                             fontSize: 20,
-    //                             fontWeight: FontWeight.normal),
-    //                       ),
-    //                       SizedBox(
-    //                         height: 25,
-    //                       ),
-    //                       Row(
-    //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                         children: [
-    //                           Text(
-    //                             lessons[index],
-    //                             textAlign: TextAlign.left,
-    //                             style: TextStyle(
-    //                                 color: Color.fromRGBO(52, 67, 86, 1),
-    //                                 fontFamily: 'HKRegular',
-    //                                 fontSize: 14,
-    //                                 fontWeight: FontWeight.normal),
-    //                           ),
-    //                           Spacer(
-    //                             flex: 2,
-    //                           ),
-    //                           // LinearPercentIndicator(
-    //                           //   lineHeight: 8.0,
-    //                           //   percent: 0.6,
-    //                           //   linearStrokeCap: LinearStrokeCap.roundAll,
-    //                           //   backgroundColor:
-    //                           //       Color.fromRGBO(151, 151, 151, 0.8),
-    //                           //   progressColor: Color.fromRGBO(0, 217, 205, 1),
-    //                           // )
-    //                         ],
-    //                       )
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ]),
-    //         );
-    //       }),
-    // );
   }
 }
