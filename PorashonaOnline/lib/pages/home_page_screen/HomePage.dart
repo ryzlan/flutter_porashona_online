@@ -76,14 +76,11 @@ class _HomePageState extends State<HomePage> {
               Text(
                 "Study",
                 style: TextStyle(
-                    color: Color.fromRGBO(52, 67, 86, 1),
+                    color: Color.fromRGBO(34, 33, 52, 1),
                     fontFamily: 'HKBold',
-                    fontSize: 30.0,
+                    fontSize: 28.0,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 20,
               ),
               Container(
                 width: 250,
@@ -93,9 +90,9 @@ class _HomePageState extends State<HomePage> {
                       '\n' +
                       'competitors to know your chances!',
                   style: TextStyle(
-                      color: Color.fromRGBO(56, 56, 56, 1),
+                      color: Color.fromRGBO(138, 146, 159, 1),
                       fontFamily: 'HKRegular',
-                      fontSize: 14.0,
+                      fontSize: 15.0,
                       fontWeight: FontWeight.normal),
                   textAlign: TextAlign.center,
                 ),
@@ -103,7 +100,6 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 10,
               ),
-              _cardWidget(),
               SizedBox(
                 height: 10,
               ),
@@ -154,87 +150,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  _cardWidget() {
-    return Container(
-      alignment: Alignment.center,
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.symmetric(horizontal: 30),
-      // width: MediaQuery.of(context).size.width * 0.3,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
-            child: RaisedButton.icon(
-              elevation: 0,
-              padding: EdgeInsets.all(0),
-              onPressed: () {},
-              label: Text(
-                '6000 Questions',
-                style: TextStyle(
-                    color: Color.fromRGBO(52, 52, 52, 1),
-                    fontFamily: 'HKBold',
-                    fontSize: 9.0),
-              ),
-              icon: Icon(
-                Icons.question_answer,
-                color: Theme.of(context).primaryColor,
-                size: 15,
-              ),
-              textColor: Colors.white,
-              color: Colors.transparent,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: RaisedButton.icon(
-              elevation: 0,
-              padding: EdgeInsets.all(0),
-              onPressed: () {},
-              label: Text(
-                '400 Articles',
-                style: TextStyle(
-                    color: Color.fromRGBO(52, 52, 52, 1),
-                    fontFamily: 'HKBold',
-                    fontSize: 9.0),
-              ),
-              icon: Icon(
-                Icons.event_note,
-                color: Theme.of(context).primaryColor,
-                size: 15,
-              ),
-              textColor: Colors.white,
-              color: Colors.transparent,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: RaisedButton.icon(
-              elevation: 0,
-              padding: EdgeInsets.all(0),
-              onPressed: () {},
-              label: Text(
-                '200+ Quizzes',
-                style: TextStyle(
-                    color: Color.fromRGBO(52, 52, 52, 1),
-                    fontFamily: 'HKBold',
-                    fontSize: 9.0),
-              ),
-              icon: Icon(
-                Icons.watch,
-                color: Theme.of(context).primaryColor,
-                size: 15,
-              ),
-              textColor: Colors.white,
-              color: Colors.transparent,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -538,15 +453,15 @@ class _HomePageState extends State<HomePage> {
 
   _blogListWidget(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.50,
-      padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+      height: MediaQuery.of(context).size.height * 0.60,
+      //MediaQuery.of(context).size.height * 0.70,
+      padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: subjects.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(right: 10),
-
+              margin: EdgeInsets.only(top: 10, bottom: 20, right: 10),
               width: MediaQuery.of(context).size.width * 0.8,
               // padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
@@ -554,10 +469,10 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(112, 112, 112, 0.08),
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: Offset(4, 2), // changes position of shadow
+                      color: Color.fromRGBO(60, 128, 209, 0.09),
+                      spreadRadius: 1,
+                      blurRadius: 19,
+                      offset: Offset(0, 12), // changes position of shadow
                     ),
                   ]),
               child: Column(

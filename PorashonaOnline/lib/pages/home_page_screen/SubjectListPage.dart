@@ -65,7 +65,7 @@ class _SubjectListPageState extends State<SubjectListPage> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        padding: EdgeInsets.only(left: 15, right: 15),
+        margin: EdgeInsets.only(left: 15, right: 15),
         child: ListView(
           shrinkWrap: true,
           children: [
@@ -203,23 +203,38 @@ class _SubjectListPageState extends State<SubjectListPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _subject('Bangla Language & Literature (35)'),
-        _subject('English Language & Literature (35)'),
-        _subject('Bangladesh Affairs (30)'),
-        _subject('International Affairs (30)'),
-        _subject('Geography (10)'),
+        _subject('Bangla Language & Literature (35)', -15, 45),
+        SizedBox(
+          height: 10,
+        ),
+        _subject('English Language & Literature (35)', -15, 40),
+        SizedBox(
+          height: 10,
+        ),
+        _subject('Bangladesh Affairs (30)', -15, 30),
+        SizedBox(
+          height: 10,
+        ),
+        _subject('International Affairs (30)', -15, 30),
+        SizedBox(
+          height: 10,
+        ),
+        _subject('Geography (10)', -15, 30),
+        SizedBox(
+          height: 10,
+        ),
       ],
     );
   }
 
-  _subject(String title) {
+  _subject(String title, double right, double top) {
     final arrowButton = new Container(
-      height: 80,
+      // height: 80,
       width: MediaQuery.of(context).size.width * 0.85,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(bottom: 15),
+      padding: EdgeInsets.only(top: 20, left: 20, bottom: 0),
+      // margin: EdgeInsets.only(bottom: 15),
       decoration: new BoxDecoration(
-          color: Color.fromRGBO(244, 246, 249, 1),
+          color: Color.fromRGBO(244, 246, 249, 1), //244, 246, 249, 1
           // shape: BoxShape.rectangle,
           borderRadius: new BorderRadius.circular(12.0),
           boxShadow: [
@@ -237,7 +252,7 @@ class _SubjectListPageState extends State<SubjectListPage> {
           Container(
             padding: EdgeInsets.zero,
             margin: EdgeInsets.zero,
-            width: 140,
+            width: 180,
             // height: 30,
             child: Text(
               title,
@@ -249,14 +264,14 @@ class _SubjectListPageState extends State<SubjectListPage> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          Expanded(flex: 1, child: _rowIconWidgets())
+          _rowIconWidgets()
         ],
       ),
     );
 
     final planetCard = new Positioned(
-      right: -15,
-      top: 25,
+      right: right,
+      top: top,
       child: Container(
         //margin: EdgeInsets.symmetric(vertical: 16),
         alignment: FractionalOffset.topCenter,
@@ -300,7 +315,7 @@ class _SubjectListPageState extends State<SubjectListPage> {
       children: [
         RaisedButton.icon(
           elevation: 0,
-          padding: EdgeInsets.all(0),
+          padding: EdgeInsets.zero,
           onPressed: () {},
           label: Text(
             '6000 Questions',
@@ -422,15 +437,15 @@ class _SubjectListPageState extends State<SubjectListPage> {
 
   _blogListWidget(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.50,
-      padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+      height: MediaQuery.of(context).size.height * 0.60,
+      //MediaQuery.of(context).size.height * 0.70,
+      padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: subjects.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(right: 10),
-
+              margin: EdgeInsets.only(top: 10, bottom: 20, right: 10),
               width: MediaQuery.of(context).size.width * 0.8,
               // padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
@@ -438,10 +453,10 @@ class _SubjectListPageState extends State<SubjectListPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(112, 112, 112, 0.08),
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: Offset(4, 2), // changes position of shadow
+                      color: Color.fromRGBO(60, 128, 209, 0.09),
+                      spreadRadius: 1,
+                      blurRadius: 19,
+                      offset: Offset(0, 12), // changes position of shadow
                     ),
                   ]),
               child: Column(
