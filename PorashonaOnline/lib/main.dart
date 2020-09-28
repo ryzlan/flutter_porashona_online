@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './pages/LoginScreen.dart';
 import 'package:bot_toast/bot_toast.dart';
 import './pages/home_page_screen/HomePage.dart';
+import './pages/home_page_screen/SubjectListPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -96,7 +97,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 18.0,
                 fontWeight: FontWeight.normal)),
       ),
-      home: HomePage(),
+      home: SubjectListPage(),
       //LoginScreen(),
     );
   }
