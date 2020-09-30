@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:expansion_card/expansion_card.dart';
+import '../../components/expand.dart';
 
 class SubjectPage extends StatefulWidget {
   SubjectPage({Key key}) : super(key: key);
@@ -8,6 +10,13 @@ class SubjectPage extends StatefulWidget {
 }
 
 class _SubjectPageState extends State<SubjectPage> {
+  final List chapterName = [
+    'Chapter 1 - Fundamentals of IELTS',
+    'Chapter 2 - Some Wada',
+    'Chapter 3 - Other Wada',
+    'Chapter 4 - Wada Wada',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +86,7 @@ class _SubjectPageState extends State<SubjectPage> {
             height: 20,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Scores",
               style: Theme.of(context).textTheme.headline2,
@@ -91,6 +100,10 @@ class _SubjectPageState extends State<SubjectPage> {
           SizedBox(
             height: 20,
           ),
+          _listChapterWidget(context),
+          SizedBox(
+            height: 20,
+          )
         ]),
       ),
     );
@@ -351,11 +364,88 @@ class _SubjectPageState extends State<SubjectPage> {
     );
 
     return Container(
-      margin: EdgeInsets.only(left: 15),
+      margin: EdgeInsets.only(left: 10),
       padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       height: MediaQuery.of(context).size.height * 0.40,
       child: ListView(
           scrollDirection: Axis.horizontal, children: [score, visitors, time]),
+    );
+  }
+
+  _listChapterWidget(BuildContext context) {
+    final chapterOne = ExpansionCard(
+      // trailing: null,
+      title: Text(
+        "Chapter 1 - Some Wada",
+        style: TextStyle(
+            fontSize: 14,
+            color: Color.fromRGBO(135, 80, 213, 1),
+            fontFamily: 'HKRegular',
+            fontWeight: FontWeight.bold),
+      ),
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 7),
+          child: Text("Content goes over here !",
+              style: TextStyle(fontSize: 20, color: Colors.black)),
+        )
+      ],
+    );
+
+    final chapterTwo = ExpansionCard(
+      // trailing: null,
+      leading: Container(
+          // margin: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Color.fromRGBO(255, 255, 255, .1),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Theme.of(context).primaryColor,
+            ),
+            child: Icon(
+              Icons.note_add,
+              color: Colors.transparent,
+              size: 20,
+            ),
+          )),
+      title: Text(
+        "Chapter 1 - Some Wada",
+        style: TextStyle(
+            fontSize: 14,
+            color: Color.fromRGBO(135, 80, 213, 1),
+            fontFamily: 'HKRegular',
+            fontWeight: FontWeight.bold),
+      ),
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 7),
+          child: Text("Content goes over here !",
+              style: TextStyle(fontSize: 20, color: Colors.black)),
+        )
+      ],
+    );
+
+    return Column(
+      children: [
+        chapterOne,
+        SizedBox(
+          height: 10,
+        ),
+        chapterOne,
+        SizedBox(
+          height: 10,
+        ),
+        chapterOne,
+        SizedBox(
+          height: 10,
+        ),
+        chapterOne
+      ],
     );
   }
 }
